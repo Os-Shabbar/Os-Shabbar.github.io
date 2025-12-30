@@ -4,14 +4,490 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Osama Shabbar | Data Analyst</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), 0 0 10px rgba(4, 83, 212, 0.2); }
+      50% { box-shadow: 0 0 10px rgba(99, 102, 241, 0.4), 0 0 20px rgba(142, 142, 177, 0.3); }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes neonBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    html {
+      scroll-padding-top: 100px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #1e1b4b);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    header h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #818cf8;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    section {
+      padding: 5rem 10%;
+      position: relative;
+      z-index: 1;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    #experience, #education, #courses, #projects {
+      padding: 5rem 10%;
+    }
+
+    #experience .grid-container,
+    #education .grid-container,
+    #courses .grid-container,
+    #projects .grid-container {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    #experience .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    #education .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #courses .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #projects .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    section:first-of-type {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    section:first-of-type::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    section img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid #3b82f6;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(99, 102, 241, 0.2);
+      animation: float 3s ease-in-out infinite;
+      object-fit: cover;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 1rem 0;
+      color: #f1f5f9;
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    h1 span {
+      display: inline-block;
+      background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse 2s ease-in-out infinite, gradientShift 3s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    section:first-of-type p {
+      font-size: 1.5rem;
+      color: #94a3b8;
+      margin: 1rem 0 2rem;
+    }
+
+    section:first-of-type a {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: linear-gradient(45deg, #3b82f6, #6366f1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:first-of-type a::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    section:first-of-type a:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    section:first-of-type a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      border-radius: 2px;
+    }
+
+    #about div, #experience .grid-container > div, #education .grid-container > div, 
+    #courses .grid-container > div, #projects .grid-container > div {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      margin: 0;
+      border-radius: 15px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about div::before, #experience .grid-container > div::before, 
+    #education .grid-container > div::before, #courses .grid-container > div::before, 
+    #projects .grid-container > div::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+      transition: left 0.5s ease;
+    }
+
+    #about div:hover::before, #experience .grid-container > div:hover::before, 
+    #education .grid-container > div:hover::before, #courses .grid-container > div:hover::before, 
+    #projects .grid-container > div:hover::before {
+      left: 100%;
+    }
+
+    #about div:hover, #experience .grid-container > div:hover, 
+    #education .grid-container > div:hover, #courses .grid-container > div:hover, 
+    #projects .grid-container > div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: #60a5fa;
+      margin-bottom: 0.5rem;
+    }
+
+    #experience div span, #education div span, #courses div span, #projects div span {
+      color: #a78bfa;
+      font-style: italic;
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    #about p, #experience p, #education p, #projects p {
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin-top: 1rem;
+    }
+
+    strong {
+      color: #818cf8;
+      font-weight: 700;
+    }
+
+    #skills div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    #skills span {
+      padding: 1rem 2rem;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 50px;
+      color: #e2e8f0;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #skills span::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s, height 0.4s;
+    }
+
+    #skills span:hover::before {
+      width: 200px;
+      height: 200px;
+    }
+
+    #skills span:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+      border-color: rgba(99, 102, 241, 0.6);
+      background: rgba(59, 130, 246, 0.25);
+    }
+
+    #courses div a, #projects div a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    #courses div a:hover, #projects div a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    #contact {
+      text-align: center;
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 4rem 10%;
+      border-radius: 15px;
+      margin: 2rem 10%;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    #contact p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      color: #94a3b8;
+    }
+
+    #contact a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    #contact a:hover {
+      color: #818cf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(15, 23, 42, 0.9);
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      section {
+        padding: 3rem 5%;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      #experience .grid-container,
+      #education .grid-container,
+      #courses .grid-container,
+      #projects .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER / NAV -->
   <header>
-    <h2 class="logo">Osama Shabbar</h2>
+    <h2>Osama Shabbar</h2>
     <nav>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
@@ -23,114 +499,104 @@
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <section>
     <img src="files/image/img.jpg" alt="Profile photo">
     <h1>Hi, I'm <span>Osama Shabbar</span></h1>
     <p>Data Analyst | Python • SQL • Power BI</p>
-    <a class="btn" href="files/resume/Resume Osama Shabbar.pdf" target="_blank">View Resume</a>
+    <a href="files/resume/Resume Osama Shabbar.pdf"
+   target="_blank"
+   rel="noopener noreferrer">
+  View Resume
+</a>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-  <h2>About Me</h2>
+  <section id="about">
+    <h2>About Me</h2>
+    <div>
+      <p>
+        I hold a Master's degree in Finance from Utara University and have a strong
+        passion for data and data analysis. I enjoy working with large datasets and
+        transforming complex data into meaningful insights that support
+        decision-making.
+        <br><br>
+        I have solid experience with <strong>STATA</strong>, <strong>SPSS</strong>,
+        <strong>SQL</strong>, <strong>MS Access</strong>, and <strong>Python</strong>
+        for data manipulation and automation, as well as data visualization using
+        <strong>Power BI</strong>.
+      </p>
+    </div>
+  </section>
 
-  <div class="info-card">
-    <p>
-      I hold a Master’s degree in Finance from Utara University and have a strong
-      passion for data and data analysis. I enjoy working with large datasets and
-      transforming complex data into meaningful insights that support
-      decision-making.
-      <br><br>
-      I have solid experience with <strong>STATA</strong>, <strong>SPSS</strong>,
-      <strong>SQL</strong>, <strong>MS Access</strong>, and <strong>Python</strong>
-      for data manipulation and automation, as well as data visualization using
-      <strong>Power BI</strong>.
-    </p>
-  </div>
-</section>
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="grid-container">
+      <div>
+        <h3>Reporting & Information Management Officer</h3>
+        <span>Norwegian Refugee Council (NRC) | Jan 2024 – Dec 2025</span>
+        <p>
+          Responsible for data reporting, information management, and supporting
+          decision-making through accurate and timely data analysis.
+        </p>
+      </div>
 
+      <div>
+        <h3>Data Management Technical Assistant</h3>
+        <span>Norwegian Refugee Council (NRC) | Jun 2022 – Dec 2023</span>
+        <p>
+          Supported data collection, cleaning, validation, and database management
+          to ensure high-quality datasets for program monitoring and reporting.
+        </p>
+      </div>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-  <h2>Experience</h2>
+      <div>
+        <h3>Monitoring, Evaluation & Learning Assistant</h3>
+        <span>Jordan River Foundation (JRF) | Aug 2021 – Jun 2022</span>
+        <p>
+          Assisted in monitoring and evaluation activities, data analysis, and
+          reporting to assess program performance and impact.
+        </p>
+      </div>
 
-  <div class="experience-item">
-    <h3>Reporting & Information Management Officer</h3>
-    <span>Norwegian Refugee Council (NRC) | Jan 2024 – Dec 2025</span>
-    <p>
-      Responsible for data reporting, information management, and supporting
-      decision-making through accurate and timely data analysis.
-    </p>
-  </div>
+      <div>
+        <h3>Finance Officer</h3>
+        <span>Next Group | Jul 2015 – Jun 2018</span>
+        <p>
+          Managed financial records, reports, and budgeting processes, ensuring
+          accuracy and compliance with financial policies.
+        </p>
+      </div>
 
-  <div class="experience-item">
-    <h3>Data Management Technical Assistant</h3>
-    <span>Norwegian Refugee Council (NRC) | Jun 2022 – Dec 2023</span>
-    <p>
-      Supported data collection, cleaning, validation, and database management
-      to ensure high-quality datasets for program monitoring and reporting.
-    </p>
-  </div>
+      <div>
+        <h3>Customer Service Intern</h3>
+        <span>Jordan Ahli Bank | Sep 2014 – Dec 2014</span>
+        <p>
+          Provided customer support services, assisted with banking operations,
+          and maintained accurate customer records.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <div class="experience-item">
-    <h3>Monitoring, Evaluation & Learning Assistant</h3>
-    <span>Jordan River Foundation (JRF) | Aug 2021 – Jun 2022</span>
-    <p>
-      Assisted in monitoring and evaluation activities, data analysis, and
-      reporting to assess program performance and impact.
-    </p>
-  </div>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="grid-container">
+      <div>
+        <h3>Master's Degree in Finance</h3>
+        <span>Utara University Malaysia, Kedah, Malaysia</span>
+        <p>Graduated: September 2020 <br> GPA: 3.38</p>
+      </div>
 
-  <div class="experience-item">
-    <h3>Finance Officer</h3>
-    <span>Next Group | Jul 2015 – Jun 2018</span>
-    <p>
-      Managed financial records, reports, and budgeting processes, ensuring
-      accuracy and compliance with financial policies.
-    </p>
-  </div>
+      <div>
+        <h3>Bachelor's Degree in Banking & Finance</h3>
+        <span>Yarmouk University, Irbid, Jordan</span>
+        <p>Graduated: February 2015 <br> GPA: 73</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="experience-item">
-    <h3>Customer Service Intern</h3>
-    <span>Jordan Ahli Bank | Sep 2014 – Dec 2014</span>
-    <p>
-      Provided customer support services, assisted with banking operations,
-      and maintained accurate customer records.
-    </p>
-  </div>
-
-</section>
-
-  <!-- EDUCATION -->
-<section id="education" class="section">
-  <h2>Education</h2>
-
-  <div class="info-card">
-    <h3>Master’s Degree in Finance</h3>
-    <span>Utara University Malaysia, Kedah, Malaysia</span>
-    <p>
-      Graduated: September 2020 <br>
-      GPA: 3.38
-    </p>
-  </div>
-
-  <div class="info-card">
-    <h3>Bachelor’s Degree in Banking & Finance</h3>
-    <span>Yarmouk University, Irbid, Jordan</span>
-    <p>
-      Graduated: February 2015 <br>
-      GPA: 73
-    </p>
-  </div>
-</section>
-
-
-
-  <!-- SKILLS -->
-  <section id="skills" class="section">
+  <section id="skills">
     <h2>Skills</h2>
-    <div class="skills">
+    <div>
       <span>Python</span>
       <span>SQL</span>
       <span>Pandas</span>
@@ -146,49 +612,57 @@
     </div>
   </section>
 
-  <!-- COURSES -->
-  <section id="courses" class="section">
-  <h2>Courses</h2>
-
-  <div class="course-card">
-    <h3>Data Analysis & Reporting</h3>
-    <span>Provider: CTS</span>
-    <a class="btn" href="files/certificates/Data Analysis & Reporting.pdf" target="_blank">View Certificate</a>
-  </div>
-
-  <div class="course-card">
-    <h3>Statistical Tests & Sampling Techniques</h3>
-    <span>Provider: MBS</span>
-    <a class="btn" href="files/certificates/Statistical Test and Sampling Technique.pdf" target="_blank">View Certificate</a>
-  </div>
-</section>
-
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Sales Analysis</h3>
-        <p>Exploratory analysis of sales data.</p>
-        <a href="#">View Project</a>
+  <section id="courses">
+    <h2>Courses</h2>
+    <div class="grid-container">
+      <div>
+        <h3>Data Analysis & Reporting</h3>
+        <span>Provider: CTS</span>
+        <a href="files/certificates/Data Analysis & Reporting.pdf"
+          target="_blank"
+          rel="noopener noreferrer">
+          View Certificate
+        </a>
       </div>
-      <div class="card">
-        <h3>Customer Churn</h3>
-        <p>Churn prediction and insights.</p>
-        <a href="#">View Project</a>
+
+      <div>
+        <h3>Statistical Tests & Sampling Techniques</h3>
+        <span>Provider: MBS</span>
+        <a href="files/certificates/Statistical Test and Sampling Technique.pdf"
+          target="_blank"
+          rel="noopener noreferrer">
+          View Certificate
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid-container">
+      <div>
+        <h3>Portfolio Optimization</h3>
+        <span>Project</span>
+        <p>Comprehensive analysis of selected Saudi stocks over the past 5 years.</p>
+        <a href="#contact">View Project</a>
+      </div>
+
+      <div>
+        <h3>Financial Modeling Using Python</h3>
+        <span>Project</span>
+        <p>Basic financial modeling using Python.</p>
+        <a href="#contact">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
     <h2>Contact</h2>
-    <p>Email: onama.os@gmail.com</p>
-    <p>Phone Number: +962775454207</p>
+    <p>Email: onama.os@Gmail.com</p>
+    <p>Phone Number: +962 79 123 4567</p>
     <p>
-      <a href="https://github.com/Os-Shabbar">GitHub</a> |
-      <a href="https://www.linkedin.com/in/osama-shabbar/">LinkedIn</a>
+      <a href="https://github.com/yourusername">GitHub</a> |
+      <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
     </p>
   </section>
 
@@ -198,10 +672,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
