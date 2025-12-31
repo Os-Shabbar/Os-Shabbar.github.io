@@ -666,9 +666,24 @@
   <footer>
     © 2025 Osama Shabbar
   </footer>
+  <script>
+    // Save scroll position before reload
+    window.addEventListener("beforeunload", function () {
+      sessionStorage.setItem("scrollPosition", window.scrollY);
+    });
+
+    // Restore scroll position after reload
+    window.addEventListener("load", function () {
+      const scrollPosition = sessionStorage.getItem("scrollPosition");
+      if (scrollPosition !== null) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+      }
+    });
+  </script>
 
 </body>
 </html>
+
 
 
 
